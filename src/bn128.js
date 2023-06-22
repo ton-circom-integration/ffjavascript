@@ -1,4 +1,4 @@
-import { buildBn128 as buildBn128wasm } from "wasmcurves";
+import { buildBn128 as buildBn128wasm } from "@krigga/wasmcurves";
 import buildEngine from "./engine.js";
 import * as Scalar from "./scalar.js";
 import { ModuleBuilder } from "wasmbuilder";

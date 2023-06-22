@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var crypto = require('crypto');
-var wasmcurves = require('wasmcurves');
+var wasmcurves = require('@krigga/wasmcurves');
 var os = require('os');
 var Worker = require('web-worker');
 var wasmbuilder = require('wasmbuilder');
@@ -3021,6 +3021,13 @@ function buffer2array(buff, sG) {
     return arr;
 }
 
+function ffC2blstC(a, offset = 0) {
+    if (a[offset] & 0x80) {
+        a[offset] |= 0x20;
+    }
+    a[offset] |= 0x80;
+}
+
 var _utils = /*#__PURE__*/Object.freeze({
     __proto__: null,
     stringifyBigInts: stringifyBigInts,
@@ -3035,7 +3042,8 @@ var _utils = /*#__PURE__*/Object.freeze({
     log2: log2,
     buffReverseBits: buffReverseBits,
     array2buffer: array2buffer,
-    buffer2array: buffer2array
+    buffer2array: buffer2array,
+    ffC2blstC: ffC2blstC
 });
 
 const PAGE_SIZE = 1<<30;
@@ -4100,6 +4108,11 @@ class WasmCurve {
         this.tm.instance.exports[this.prefix + "_LEMtoC"](this.pOp1, this.pOp1);
         const res = this.tm.getBuff(this.pOp1, this.F.n8);
         arr.set(res, offset);
+    }
+
+    toBlstCompressed(arr, offset, a) {
+        this.toRprCompressed(arr, offset, a);
+        ffC2blstC(arr, offset);
     }
 
     fromRprCompressed(arr, offset) {

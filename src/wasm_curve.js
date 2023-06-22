@@ -2,6 +2,7 @@
 
 import * as Scalar from "./scalar.js";
 import buildBatchConvert from "./engine_batchconvert.js";
+import { ffC2blstC } from "./utils.js";
 
 export default class WasmCurve {
 
@@ -246,6 +247,11 @@ export default class WasmCurve {
         this.tm.instance.exports[this.prefix + "_LEMtoC"](this.pOp1, this.pOp1);
         const res = this.tm.getBuff(this.pOp1, this.F.n8);
         arr.set(res, offset);
+    }
+
+    toBlstCompressed(arr, offset, a) {
+        this.toRprCompressed(arr, offset, a);
+        ffC2blstC(arr, offset);
     }
 
     fromRprCompressed(arr, offset) {

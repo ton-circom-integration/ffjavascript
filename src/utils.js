@@ -247,3 +247,10 @@ export function buffer2array(buff, sG) {
     }
     return arr;
 }
+
+export function ffC2blstC(a, offset = 0) {
+    if (a[offset] & 0x80) {
+        a[offset] |= 0x20;
+    }
+    a[offset] |= 0x80;
+}

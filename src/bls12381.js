@@ -1,4 +1,4 @@
-import { buildBls12381 as buildBls12381wasm } from "wasmcurves";
+import { buildBls12381 as buildBls12381wasm } from "@krigga/wasmcurves";
 import buildEngine from "./engine.js";
 import * as Scalar from "./scalar.js";
 import { ModuleBuilder } from "wasmbuilder";

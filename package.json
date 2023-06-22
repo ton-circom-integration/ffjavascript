@@ -1,7 +1,7 @@
 {
-  "name": "ffjavascript",
+  "name": "@krigga/ffjavascript",
   "type": "module",
-  "version": "0.2.59",
+  "version": "0.3.0",
   "description": "Finite Field Library in Javascript",
   "main": "./build/main.cjs",
   "module": "./main.js",
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/iden3/ffjs#readme",
   "dependencies": {
     "wasmbuilder": "0.0.16",
-    "wasmcurves": "0.2.1",
+    "@krigga/wasmcurves": "0.2.2",
     "web-worker": "^1.2.0"
   },
   "devDependencies": {
